@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Menu da Extensão · Betímetro (IHC - UFABC)</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/extensao.css" />
+    <style>
+        .demo-nav-bar {
+            background: var(--btm-sf);
+            border-bottom: 1.5px solid var(--btm-bd);
+            width: 100%;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: 24px;
+            font-family: var(--btm-font);
+            box-sizing: border-box;
+        }
+        .demo-nav-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--btm-brand-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .demo-nav-title svg {
+            color: var(--btm-brand);
+        }
+        .demo-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .demo-nav-link {
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--btm-brand-dark);
+            background: var(--btm-brand-subtle);
+            border: 1px solid var(--btm-brand);
+            padding: 6px 14px;
+            border-radius: 6px;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .demo-nav-link:hover, .demo-nav-link:focus-visible {
+            background: var(--btm-brand);
+            color: var(--btm-tx-onbrand);
+            outline: 2px solid var(--btm-bd-focus);
+        }
+    </style>
+</head>
+<body class="btm-standalone-body">
+
+    <!-- Barra de Navegação do Protótipo Acadêmico -->
+    <header class="demo-nav-bar" role="banner">
+        <div class="demo-nav-title">
+            <svg width="24" height="22" viewBox="0 0 32 28" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+                <path d="M3 24a13 13 0 0 1 26 0" stroke-width="2.5" />
+                <path d="M16 24 22.5 12.5" stroke-width="2.5" />
+                <circle cx="16" cy="24" r="2.2" fill="currentColor" stroke="none" />
+            </svg>
+            Betímetro · Protótipo da Extensão
+        </div>
+        <nav class="demo-nav-links" aria-label="Navegação da Demonstração">
+            <a class="demo-nav-link" href="./demo-amazon.html" title="Abrir página de teste com análise em tempo real">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polygon points="10 8 16 12 10 16 10 8"/>
+                </svg>
+                Ver Análise em Tempo Real (Amazon)
+            </a>
+            <a class="demo-nav-link" href="../index.html" title="Acessar o portal web do Betímetro">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                Portal Web Betímetro
+            </a>
+        </nav>
+    </header>
+
+    <!-- Frame da Extensão (Visualização dedicada do pop-up) -->
+    <main class="btm-standalone-frame" id="btm-extension-popup" role="region" aria-label="Menu da Extensão Betímetro">
+        
+        <!-- Header da Extensão -->
+        <header class="btm-header">
+            <a class="btm-header-brand" href="../index.html" aria-label="Página inicial do Betímetro">
+                <svg width="28" height="24" viewBox="0 0 32 28" fill="none" stroke="currentColor" stroke-linecap="round" aria-hidden="true">
+                    <path d="M3 24a13 13 0 0 1 26 0" stroke-width="2.5" />
+                    <path d="M16 24 22.5 12.5" stroke-width="2.5" />
+                    <circle cx="16" cy="24" r="2.2" fill="currentColor" stroke="none" />
+                </svg>
+                <div>
+                    <h1 class="btm-header-title">Betímetro</h1>
+                    <span class="btm-header-subtitle" id="btm-header-subtitle">Análise 100% local no navegador</span>
+                </div>
+            </a>
+            <div class="btm-header-tools">
+                <button class="btm-icon-btn" id="btm-contrast-toggle" type="button" aria-pressed="false" aria-label="Alternar Alto Contraste" title="Alto Contraste (Acessibilidade)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a10 10 0 0 1 0 20z" fill="currentColor"/>
+                    </svg>
+                </button>
+                <button class="btm-icon-btn" id="btm-theme-toggle" type="button" aria-pressed="false" aria-label="Alternar Tema Escuro" title="Tema Escuro">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Barra de Acessibilidade (Texto + VLibras) - WCAG 2.2 AA/AAA -->
+        <div class="btm-a11y-bar" role="region" aria-label="Opções de acessibilidade">
+            <div class="btm-a11y-group">
+                <span>Texto:</span>
+                <button class="btm-a11y-btn" id="btm-fs-100" type="button" aria-pressed="true" aria-label="Texto tamanho padrão">A</button>
+                <button class="btm-a11y-btn" id="btm-fs-115" type="button" aria-pressed="false" aria-label="Texto aumentado 115%">A+</button>
+                <button class="btm-a11y-btn" id="btm-fs-130" type="button" aria-pressed="false" aria-label="Texto aumentado 130%">A++</button>
+            </div>
+            <button class="btm-a11y-btn btm-a11y-vlibras" id="btm-vlibras-toggle" type="button" aria-pressed="false" aria-label="Ativar tradutor VLibras para Libras" title="Tradutor VLibras (Libras)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M18 11V6a2 2 0 0 0-4 0v5M14 10V4a2 2 0 0 0-4 0v6M10 10.5V6a2 2 0 0 0-4 0v8a6 6 0 0 0 12 0v-3a2 2 0 0 0-4 0"/>
+                </svg>
+                <span>VLibras</span>
+            </button>
+        </div>
+
+        <!-- Site atual sendo inspecionado + Botão Ligar/Desligar Extensão -->
+        <div class="btm-site-meta">
+            <div class="btm-site-info">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+                <span class="btm-site-domain">amazon.com.br</span>
+            </div>
+            <button class="btm-power-btn" id="btm-power-btn" type="button" aria-pressed="true" title="Ligar ou desligar a extensão Betímetro nesta página">
+                <span class="btm-site-status-dot" style="display:inline-block;width:7px;height:7px;background:currentColor;border-radius:50%;"></span>
+                <span>Ativa · Desligar</span>
+            </button>
+        </div>
+
+        <!-- Painel Exibido quando a Extensão está Desligada -->
+        <div class="btm-disabled-panel" id="btm-disabled-panel" hidden role="region" aria-label="Extensão desligada">
+            <div class="btm-disabled-icon" aria-hidden="true">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/>
+                </svg>
+            </div>
+            <h2 class="btm-disabled-title">Extensão Betímetro Desligada</h2>
+            <p class="btm-disabled-desc">
+                A proteção em tempo real e os destaques visuais estão desativados para <strong>amazon.com.br</strong>. Nenhum elemento da página está sendo monitorado.
+            </p>
+            <button class="btm-btn-sm primary" id="btm-reactivate-btn" type="button">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/><line x1="12" y1="2" x2="12" y2="12"/>
+                </svg>
+                Ligar Extensão Novamente
+            </button>
+        </div>
+
+        <!-- Corpo Rolável Unificado -->
+        <div class="btm-scroll-content">
+            <!-- Seção do Índice Ético Unificado (RF01 e RF07) -->
+            <section class="btm-score-card" aria-label="Índice Ético da página atual">
+                <div class="btm-gauge-wrap">
+                    <svg class="btm-gauge-svg" viewBox="0 0 96 96" aria-hidden="true">
+                        <circle class="btm-gauge-bg" cx="48" cy="48" r="38"></circle>
+                        <circle class="btm-gauge-val hi" id="btm-gauge-circle" cx="48" cy="48" r="38"></circle>
+                    </svg>
+                    <div class="btm-score-text-block">
+                        <span class="btm-score-caption" id="btm-score-caption">Índice Ético</span>
+                        <div class="btm-score-number">
+                            <span id="btm-score-val">36</span><span class="btm-score-scale">/100</span>
+                        </div>
+                        <span class="btm-score-direction" id="btm-score-direction">0–100 · Quanto maior, melhor</span>
+                        <div class="btm-score-badge hi" id="btm-score-pill">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                                <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                                <line x1="12" y1="9" x2="12" y2="13"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            <span>Mais sinais de atenção</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Composição das Deduções no Índice Ético (RF07) -->
+                <div class="btm-breakdown" role="region" aria-label="Deduções no Índice Ético">
+                    <div class="btm-breakdown-title">
+                        <span id="btm-breakdown-title-text">Deduções no Índice</span>
+                        <span id="btm-breakdown-count">4 sinais detectados</span>
+                    </div>
+                    <div class="btm-breakdown-bar" aria-hidden="true">
+                        <div class="btm-bar-segment ins" style="width: 41%;" title="Assinatura: −26 pts"></div>
+                        <div class="btm-bar-segment urg" style="width: 34%;" title="Pressão / Impulso: −22 pts"></div>
+                        <div class="btm-bar-segment soc" style="width: 25%;" title="Anúncio / Preço: −16 pts"></div>
+                    </div>
+                    <div class="btm-breakdown-legend">
+                        <div class="btm-legend-item">
+                            <span class="btm-legend-dot" style="background:#aa4c3f;"></span>
+                            <span>Assinatura (−26 pts)</span>
+                        </div>
+                        <div class="btm-legend-item">
+                            <span class="btm-legend-dot" style="background:#d97706;"></span>
+                            <span>Pressão / Impulso (−22 pts)</span>
+                        </div>
+                        <div class="btm-legend-item">
+                            <span class="btm-legend-dot" style="background:#b45309;"></span>
+                            <span>Anúncio / Preço (−16 pts)</span>
+                        </div>
+                        <div class="btm-legend-item">
+                            <span class="btm-legend-dot" style="background:#53625e;"></span>
+                            <span id="btm-breakdown-final">Índice Ético: 36/100</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Lista de Sinais Detectados nesta Página (RF02, RF06) -->
+            <section class="btm-patterns-section" aria-label="Sinais detectados na página">
+                <h2 class="btm-section-heading">
+                    <span id="btm-patterns-heading">Padrões Identificados nesta Página</span>
+                    <span class="btm-count-pill" id="btm-count-pill">4 no produto</span>
+                </h2>
+
+                <!-- Cards montados dinamicamente via JS -->
+                <div id="btm-patterns-list" role="feed" aria-label="Lista de elementos identificados"></div>
+            </section>
+
+            <!-- Controles do Usuário (Requisito 3.2 - Privacidade e Ética) -->
+            <section class="btm-controls-section" aria-label="Preferências do usuário na extensão">
+                <div class="btm-toggle-row">
+                    <div class="btm-toggle-label">
+                        <strong id="btm-lbl-highlights">Destacar elementos na página</strong>
+                        <span class="btm-toggle-subtext" id="btm-sub-highlights">Bordas e etiquetas visuais nos dark patterns</span>
+                    </div>
+                    <label class="btm-switch">
+                        <input type="checkbox" id="btm-toggle-highlights" checked aria-label="Ativar ou desativar destaques na página" />
+                        <span class="btm-slider"></span>
+                    </label>
+                </div>
+                <div class="btm-toggle-row">
+                    <div class="btm-toggle-label">
+                        <strong id="btm-lbl-alerts">Alertas em tempo real</strong>
+                        <span class="btm-toggle-subtext" id="btm-sub-alerts">Avisos automáticos ao carregar páginas suspeitas</span>
+                    </div>
+                    <label class="btm-switch">
+                        <input type="checkbox" id="btm-toggle-alerts" checked aria-label="Ativar ou desativar alertas em tempo real" />
+                        <span class="btm-slider"></span>
+                    </label>
+                </div>
+                <div class="btm-toggle-row">
+                    <div class="btm-toggle-label">
+                        <strong>Modo simplificado</strong>
+                        <span class="btm-toggle-subtext">Alvos de clique ≥ 48px e texto sem jargões</span>
+                    </div>
+                    <label class="btm-switch">
+                        <input type="checkbox" id="btm-toggle-senior" aria-label="Ativar modo simplificado para pessoas idosas ou iniciantes" />
+                        <span class="btm-slider"></span>
+                    </label>
+                </div>
+                <div class="btm-toggle-row">
+                    <div class="btm-toggle-label">
+                        <strong id="btm-lbl-advanced">Mostrar opções avançadas</strong>
+                        <span class="btm-toggle-subtext" id="btm-sub-advanced">Exibe a Auditoria Técnica Completa e envio ao portal</span>
+                    </div>
+                    <label class="btm-switch">
+                        <input type="checkbox" id="btm-toggle-advanced" aria-expanded="false" aria-controls="btm-advanced-section" aria-label="Mostrar opções avançadas de auditoria técnica" />
+                        <span class="btm-slider"></span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Modo Avançado: Auditoria Técnica Completa (Oculta por padrão) -->
+            <section class="btm-advanced-section" id="btm-advanced-section" hidden aria-label="Opções avançadas de auditoria técnica">
+                <div class="btm-advanced-header">
+                    <h3 class="btm-advanced-title" id="btm-advanced-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                        </svg>
+                        <span>Auditoria Técnica Completa</span>
+                    </h3>
+                    <span class="btm-advanced-badge">Avançado</span>
+                </div>
+                <p class="btm-advanced-desc" id="btm-advanced-desc">
+                    Varredura local da árvore DOM, contraste e fluxo de compra no seu navegador. Nenhum dado sai do dispositivo, salvo se você decidir publicar o relatório no Portal Betímetro (requer Login com Google).
+                </p>
+                <button class="btm-btn-audit" id="btm-run-audit" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span id="btm-run-audit-text">Executar Auditoria Técnica Completa</span>
+                </button>
+            </section>
+
+            <!-- Conta Google discreta no final do menu (necessária somente para publicar relatórios) -->
+            <div class="btm-auth-bar" id="btm-auth-bar" role="region" aria-label="Conta Google para publicação"></div>
+        </div>
+
+        <!-- Rodapé do Menu da Extensão -->
+        <footer class="btm-footer">
+            <span class="btm-local-badge" id="btm-local-badge">🔒 Motor de análise 100% local no seu computador</span>
+            <a class="btm-footer-link" id="btm-footer-link" href="../index.html#site-amazon" title="Ver auditoria detalhada no portal">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                <span id="btm-footer-link-text">Ver auditoria completa deste site no portal</span>
+            </a>
+        </footer>
+    </main>
+
+    <!-- Modal de Contestação de Classificação (RF03) -->
+    <div class="btm-modal-backdrop" id="btm-contest-modal" hidden role="dialog" aria-modal="true" aria-labelledby="btm-contest-modal-title">
+        <div class="btm-modal">
+            <div class="btm-modal-header">
+                <h3 class="btm-modal-title" id="btm-contest-modal-title">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    <span id="btm-contest-heading-text">Contestar Classificação</span>
+                </h3>
+                <button class="btm-icon-btn" id="btm-close-contest" type="button" aria-label="Fechar modal de contestação">✕</button>
+            </div>
+            <form id="btm-contest-form">
+                <div class="btm-modal-body">
+                    <p>Você está contestando o alerta: <br><strong id="btm-contest-target-name">Nome do padrão</strong></p>
+                    <p id="btm-contest-help" class="btm-toggle-subtext">Sua contribuição ajuda a corrigir falsos positivos e melhora as regras locais do Betímetro.</p>
+                    
+                    <fieldset class="btm-modal-options" role="radiogroup" aria-required="true">
+                        <legend style="font-weight: 700; font-size: 0.9em; margin-bottom: 6px;">Qual é a sua justificativa? <span class="btm-req">(Obrigatório)</span></legend>
+                        <label class="btm-radio-label">
+                            <input type="radio" name="motivo" value="falso_positivo" checked required aria-required="true" />
+                            <span id="btm-opt-fp"><strong>Falso positivo:</strong> O elemento é legítimo e não tenta induzir ou enganar o usuário.</span>
+                        </label>
+                        <label class="btm-radio-label">
+                            <input type="radio" name="motivo" value="categoria_errada" required aria-required="true" />
+                            <span id="btm-opt-cat"><strong>Categoria incorreta:</strong> É um padrão manipulativo, mas está classificado sob a regra errada.</span>
+                        </label>
+                        <label class="btm-radio-label">
+                            <input type="radio" name="motivo" value="site_alterado" required aria-required="true" />
+                            <span id="btm-opt-alt"><strong>Site alterado:</strong> O site já corrigiu esta interface recentemente.</span>
+                        </label>
+                    </fieldset>
+
+                    <label for="btm-contest-comments" style="font-size: 0.9em; font-weight: 600;">
+                        Observações adicionais (opcional):
+                    </label>
+                    <textarea class="btm-textarea" id="btm-contest-comments" placeholder="Ex.: O frete grátis estava disponível sem o Prime logo abaixo, mas passou despercebido pela regra automática..."></textarea>
+                </div>
+                <div class="btm-modal-footer">
+                    <button class="btm-btn-sm" type="button" onclick="window.BetimetroExt.closeContestModal()">Cancelar</button>
+                    <button class="btm-btn-sm primary" type="submit" id="btm-contest-submit-btn">Enviar Contestação</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Região Live ARIA para Anúncios de Acessibilidade (Leitores de Tela) -->
+    <div class="btm-live-region" id="btm-live-announcer" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="../js/extensao.js"></script>
+</body>
+</html>

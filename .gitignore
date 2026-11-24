@@ -1,0 +1,8 @@
+# Ambiente local / editor
+.vscode/
+.idea/
+skills/
+
+# Arquivos temporários de sistema operacional
+.DS_Store
+Thumbs.db
